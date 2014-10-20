@@ -5,11 +5,20 @@
     <a class="button button-clear button-positive" href="#/edit">Done</a>
   </div>
     <ion-content class="has-header">
-      <h2>Clue Details</h2>
-      <ul>
-        <li>add Picture</li>
-        <li>add Riddle</li>
-        <li>add GPS location</li>
-      </ul>
+        <div class="list">
+          <div class="item">
+            <i class="icon ion-image" style="font-size: 800%;"></i>
+            <br/>
+            Add a Photo Clue
+          </div>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Riddle Text</span>
+    <textarea placeholder="Start your riddle" rows=6></textarea>
+  </label>
+          <div class="item item-icon-right" href="#">
+            <i class="icon ion-location"> </i> Mark Current Location
+
+          </div>
+        </div>
     </ion-content>
 </ion-view>

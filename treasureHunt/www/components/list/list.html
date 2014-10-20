@@ -1,15 +1,22 @@
-<ion-view title="Treasure Hunt">
-  <ion-nav-bar class="bar-stable">
-
-    </ion-nav-bar>
+<ion-view>
+  <div class="bar bar-header">
+      <h1 class="title">Treasure Hunts</h1>
+      <a class="button button-clear button-positive" href="#/edit">Add</a>
+    </div>
     <ion-content class="has-header">
-          <p>List of existing treasure hunts</p>
-          <ul>
-
-            <li><a href="#/details">Existing Treasure Hunt</a></li>
-            <li><a href="#/details">Another Hunt</a></li>
-          </ul>
-
-          <a class="button button-clear button-positive button-outline" href="#/edit">Add a new Treasure hunt</a>
+<div class="list card">
+  <a class="item item-avatar item-icon-right" href="#/clue">
+    <img src="mcfly.jpg">
+    <h2>Treasure Hunt ABC</h2>
+    <p>12 December 2014</p>
+    <i class="icon ion-chevron-right"> </i>
+  </a>
+  <a class="item item-avatar item-icon-right" href="#/clue">
+    <img src="mcfly.jpg">
+    <h2>Tom's Birthday Hunt</h2>
+    <p>30 October 2010</p>
+    <i class="icon ion-chevron-right"> </i>
+  </a>
+</div>
     </ion-content>
 </ion-view>

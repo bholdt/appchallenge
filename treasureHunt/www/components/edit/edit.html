@@ -1,17 +1,31 @@
 <ion-view title="Treasure Hunt">
 <div class="bar bar-header">
   <a class="button button-clear button-positive" href="#/">Cancel</a>
-  <h1 class="title">Edit Treasure Hunt ABC</h1>
+  <h1 class="title">Create Treasure Hunt</h1>
   <a class="button button-clear button-positive" href="#/details">Done</a>
 </div>
     <ion-content class="has-header">
-      <h2>Edit treasure hunt</h2>
-          <p>Title:_________________________</p>
-          <p>Clues:<p>
-            <ul>
-              <li><a href="#/clue">Clue 1</a></li>
-              <li><a href="#/clue">Clue 2</a></li>
-            </ul>
-            <a class="button button-clear button-positive button-outline" href='#/clue'>Add a clue</a>
+<div class="list">
+  <label class="item item-input">
+    <input type="text" placeholder="Treasure Hunt Title">
+  </label>
+  </div>
+<div class="list card">
+  <div class="item item-divider">
+    Clues <a class="button button-clear button-small button-positive icon-right" href='#/clue'><i class="icon ion-plus"></i> Add</a>
+  </div>
+  <a class="item item-avatar item-icon-right" href="#/clue">
+    <img src="mcfly.jpg">
+    <h2>Clue 1</h2>
+    <p>Riddle Text about something is going here</p>
+    <i class="icon ion-chevron-right"> </i>
+  </a>
+  <a class="item item-avatar item-icon-right" href="#/clue">
+    <img src="mcfly.jpg">
+    <h2>Clue 2</h2>
+    <p>Riddle Text about something is going here</p>
+    <i class="icon ion-chevron-right"> </i>
+  </a>
+</div>
     </ion-content>
 </ion-view>
