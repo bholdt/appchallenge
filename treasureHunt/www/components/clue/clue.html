@@ -2,7 +2,7 @@
   <div class="bar bar-header">
     <a class="button button-clear button-positive" href="#/edit">Cancel</a>
     <h1 class="title">Edit Clue</h1>
-    <a class="button button-clear button-positive" href="#/edit">Done</a>
+    <button class="button button-clear button-positive" ng-click="save()">Save</butotn>
   </div>
     <ion-content class="has-header">
         <div class="list">
@@ -13,7 +13,7 @@
           </div>
   <label class="item item-input item-stacked-label">
     <span class="input-label">Riddle Text</span>
-    <textarea placeholder="Start your riddle" rows=6></textarea>
+    <textarea placeholder="Start your riddle" rows=6 ng-model="clue.riddle"></textarea>
   </label>
           <div class="item item-icon-right" href="#">
             <i class="icon ion-location"> </i> Mark Current Location

@@ -15,7 +15,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('edit', {
       url: '/edit',
-      templateUrl: 'components/edit/edit.html'
+      templateUrl: 'components/edit/edit.html',
+      controller: 'EditController'
     })
     .state('play', {
       url: '/play',
@@ -27,7 +28,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('clue', {
       url: '/clue',
-      templateUrl: 'components/clue/clue.html'
+      templateUrl: 'components/clue/clue.html',
+      controller: 'ClueController'
     })
     ;
 
