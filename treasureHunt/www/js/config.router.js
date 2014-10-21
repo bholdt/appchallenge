@@ -26,8 +26,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/finish',
       templateUrl: 'components/finish/finish.html'
     })
-    .state('clue', {
+    .state('create-clue', {
       url: '/clue',
+      templateUrl: 'components/clue/clue.html',
+      controller: 'ClueController'
+    })
+    .state('edit-clue', {
+      url: '/clue/:id',
       templateUrl: 'components/clue/clue.html',
       controller: 'ClueController'
     })

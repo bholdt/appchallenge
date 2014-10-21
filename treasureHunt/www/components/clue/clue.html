@@ -15,8 +15,8 @@
     <span class="input-label">Riddle Text</span>
     <textarea placeholder="Start your riddle" rows=6 ng-model="clue.riddle"></textarea>
   </label>
-          <div class="item item-icon-right" href="#">
-            <i class="icon ion-location"> </i> Mark Current Location
+          <div class="item item-icon-right" ng-click="markCurrentLocation()">
+            <i class="icon ion-location"> </i> {{locationText}} {{clue.position.longitude}}
 
           </div>
         </div>

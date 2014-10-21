@@ -1,7 +1,6 @@
 app.factory('treasureHuntRepository',function(){
-    var treasureHunt = { title: 'wohoo' };
+    var treasureHunt = { };
     treasureHunt.clues = [];
-    treasureHunt.clues[0] = { title: 'clueasdfj', riddle:'sdfjaskl dfjaklsdj falksdjf alskdj fal;sd'};
 
     return {
       getTreasureHunt: function(){

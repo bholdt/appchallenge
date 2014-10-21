@@ -5,16 +5,11 @@
   <a class="button button-clear button-positive" href="#/details">Done</a>
 </div>
     <ion-content class="has-header">
-<div class="list">
-  <label class="item item-input">
-    <input type="text" placeholder="Treasure Hunt Title" value="{{treasureHunt.title}}">
-  </label>
-  </div>
 <div class="list card">
   <div class="item item-divider">
     Clues <a class="button button-clear button-small button-positive icon-right" href='#/clue'><i class="icon ion-plus"></i> Add</a>
   </div>
-  <a ng-repeat="clue in treasureHunt.clues" class="item item-avatar item-icon-right" href="#/clue">
+  <a ng-repeat="clue in treasureHunt.clues" class="item item-avatar item-icon-right" href="#/clue/{{$index}}">
     <img src="{{clue.image}}">
     <h2>Clue {{$index + 1}}</h2>
     <p>{{clue.riddle}}</p>
