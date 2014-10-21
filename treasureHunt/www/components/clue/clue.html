@@ -6,11 +6,11 @@
   </div>
     <ion-content class="has-header">
         <div class="list">
-          <div class="item">
+          <a class="item" ng-click="takePicture()">
             <i class="icon ion-image" style="font-size: 800%;"></i>
             <br/>
             Add a Photo Clue
-          </div>
+          </a>
   <label class="item item-input item-stacked-label">
     <span class="input-label">Riddle Text</span>
     <textarea placeholder="Start your riddle" rows=6 ng-model="clue.riddle"></textarea>

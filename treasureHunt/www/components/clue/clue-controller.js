@@ -28,6 +28,16 @@ app.controller('ClueController', function($scope, $state, $stateParams, $ionicLo
           });
   }
 
+  var takePicture = function(){
+    navigator.camera.getPicture( function(data){
+      console.log(data);
+      clue.image = data;
+    }, function(){
+      console.log('could not take picture. continuing....');
+    }, { quality: 50, destinationType: Camera.DestinationType.DATA_URL
+    });
+  }
+
   var save = function(){
     var treasureHunt = treasureHuntRepository.getTreasureHunt();
     if($stateParams.id){
@@ -42,5 +52,6 @@ app.controller('ClueController', function($scope, $state, $stateParams, $ionicLo
 
   $scope.markCurrentLocation = markCurrentLocation;
   $scope.save = save;
+  $scope.takePicture = takePicture;
   initialize();
 });
