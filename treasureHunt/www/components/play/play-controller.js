@@ -9,11 +9,11 @@ app.controller('PlayController', function($scope, treasureHuntRepository, distan
 
   function onSuccess(position) {
     currentPosition = position;
+    $scope.clue.current.distanceTo = distanceService.calculateDistance(currentPosition.coords,$scope.clue.current.position);
   }
 
   function onError(error) {
-    alert('code: '    + error.code    + '\n' +
-    'message: ' + error.message + '\n');
+    $scope.message = 'code: '    + error.code    + '\n' + 'message: ' + error.message + '\n';
   }
 
   var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { frequency: 1000 });
