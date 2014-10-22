@@ -1,27 +1,22 @@
 <ion-view title="Treasure Hunt">
-<div class="bar bar-header">
-  <a class="button button-clear button-positive" href="#/">Back to all</a>
-  <h1 class="title">Treasure Hunt ABC</h1>
-  <a class="button button-clear button-positive" href="#/edit">Edit</a>
-</div>
-<div class="list card has-header">
-  <a class="button button-full button-positive" href="#/play">Play</a>
-  <div class="item item-divider">
-    Clues
+  <div class="bar bar-header">
+    <a class="button button-clear button-positive" href="#/">Back to all</a>
+    <h1 class="title">Treasure Hunt</h1>
+    <a class="button button-clear button-positive" href="#/edit">Edit</a>
   </div>
-  <div class="item item-avatar item-icon-right">
-    <img src="mcfly.jpg">
-    <h2>Clue 1</h2>
-    <p>Riddle Text about something is going here</p>
-  </div>
-  <div class="item item-avatar item-icon-right">
-    <img src="mcfly.jpg">
-    <h2>Clue 2</h2>
-    <p>Riddle Text about something is going here</p>
-  </div>
-</div>
+  <ion-content class="has-header">
+    <a class="button button-full button-positive" href="#/play">Play</a>
+    <div class="list card">
+      <div class="item item-divider">
+        Clues
+      </div>
+      <a ng-repeat="clue in treasureHunt.clues" class="item item-avatar item-icon-right" href="#/clue/{{$index}}">
+        <img src="{{clue.image}}">
+        <h2>Clue {{$index + 1}}</h2>
+        <p>{{clue.riddle}}</p>
+        <i class="icon ion-chevron-right"> </i>
+      </a>
+    </div>
+  </ion-content>
 
-  <div class="bar bar-stable bar-footer">
-  </div>
-    </ion-content>
 </ion-view>

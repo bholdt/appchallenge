@@ -1,20 +1,21 @@
 <ion-view title="Treasure Hunt">
 <div class="bar bar-header">
-  <a class="button button-clear button-positive" href="#/play">Previous</a>
+  <a class="button button-clear button-positive" ng-click="previousClue()">Previous</a>
   <h1 class="title">Treasure Hunt ABC</h1>
-  <a class="button button-clear button-positive" href="#/play">Next</a>
+  <a class="button button-clear button-positive" ng-click="nextClue()">Next</a>
 </div>
     <ion-content class="has-header">
         <div class="list" style="text-align: center;">
-          <div class="item">
-            <i class="icon ion-image" style="font-size: 1000%;"></i>
+          <div class="item" ng-if="clue.current.image">
+            {{clue.current.image}}
           </div>
-          <div class="item item-text-wrap">
+          <div class="item item-text-wrap" ng-if="clue.current.riddle">
             <h3>Riddle</h3>
-            <p>What loses its head<br/> in the morning<br/>and gets it back at night? </p>
+            <p>{{clue.current.riddle}}</p>
           </div>
-          <div class="item" href="#">
+          <div class="item" href="#" ng-if="clue.current.position">
             <i class="icon ion-navigate" style="font-size: 200%; color: blue;"> </i> 300m away
+            <p>{{clue.current.distanceTo | distance}}
 
           </div>
         </div>

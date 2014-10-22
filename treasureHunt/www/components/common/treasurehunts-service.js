@@ -1,13 +1,13 @@
 app.factory('treasureHuntRepository',function(){
-    var treasureHunt = { };
-    treasureHunt.clues = [];
-
     return {
       getTreasureHunt: function(){
-        return treasureHunt;
+        var treasurehunt = JSON.parse(localStorage['treasurehunt'] || '{}');
+        if(!treasurehunt.clues)
+          treasurehunt.clues = []
+        return treasurehunt;
       },
       saveTreasureHunt: function(treasure){
-        treasureHunt = treasure;
+        localStorage['treasurehunt'] = JSON.stringify(treasure);
       }
     }
 });

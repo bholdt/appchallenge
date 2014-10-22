@@ -11,7 +11,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('details', {
       url: '/details',
-      templateUrl: 'components/details/details.html'
+      templateUrl: 'components/details/details.html',
+      controller: 'DetailsController'
     })
     .state('edit', {
       url: '/edit',
@@ -20,7 +21,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('play', {
       url: '/play',
-      templateUrl: 'components/play/play.html'
+      templateUrl: 'components/play/play.html',
+      controller: 'PlayController'
     })
     .state('finish', {
       url: '/finish',
