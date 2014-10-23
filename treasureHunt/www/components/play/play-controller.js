@@ -1,4 +1,4 @@
-app.controller('PlayController', function($scope, treasureHuntRepository, distanceService, playDistanceColourService){
+app.controller('PlayController', function($scope, treasureHuntRepository, $cordovaDeviceOrientation, distanceService, playDistanceColourService){
   var treasureHunt = treasureHuntRepository.getTreasureHunt();
   var currentClueIndex = 0;
   var clue = {}
@@ -35,7 +35,7 @@ app.controller('PlayController', function($scope, treasureHuntRepository, distan
   function updateClue(){
     $scope.clue.current = treasureHunt.clues[currentClueIndex];
     $scope.clue.current.distanceTo = 0;
-    $scope.clue.current.direction = ($scope.clue.current.direction || 0) - 40;
+    //$scope.clue.current.direction = ($scope.clue.current.direction || 0) - 40;
     if(currentPosition.coords){
       $scope.clue.current.distanceTo = distanceService.calculateDistance(currentPosition.coords,$scope.clue.current.position);
     }
@@ -49,9 +49,31 @@ app.controller('PlayController', function($scope, treasureHuntRepository, distan
 
   var init = function(){
     intervalId = setInterval(getCurrentPosition, 2000);
+
+
+
     $scope.treasureHunt = treasureHunt;
     $scope.clue = clue;
     $scope.distanceClass = 's-distance';
+
+    var options = { frequency: 1000 }; // Update every 1 second
+
+   var watch = $cordovaDeviceOrientation.watchHeading(options);
+
+   watch.promise.then(function(result) { /* unused */ },
+     function(err) {
+       // An error occurred
+       alert(err);
+     }, function(position) {
+       // Heading comes back in
+       // position.magneticHeading
+       //alert(position.magneticHeading);
+       if($scope.clue.current) {
+         $scope.clue.current.direction = position.magneticHeading;
+         $scope.$apply();
+       }
+     });
+
   }
 
   init();

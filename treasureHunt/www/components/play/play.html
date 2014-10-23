@@ -19,7 +19,7 @@
             <p ngif="clue.current.distanceTo">{{clue.current.distanceTo | distance}}</p>
         <div class='button-container'>
           <span class='pulse-button' ng-class="distanceClass">
-            <i id="pulse-button-text" class="icon ion-arrow-up-c" style="transform: rotate({{clue.current.direction}}deg);"> </i>
+            <i id="pulse-button-text" class="icon ion-arrow-up-c" style="transform: rotate({{clue.current.direction}}deg); -ms-transform: rotate({{clue.current.direction}}deg); /* IE 9 */-webkit-transform: rotate({{clue.current.direction}}deg);"> </i>
             </span>
         </div>
           </div>
