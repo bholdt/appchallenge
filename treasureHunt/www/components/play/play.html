@@ -12,7 +12,13 @@
           </div>
           <div class="item item-text-wrap" ng-if="clue.current.riddle">
             <h3>Riddle</h3>
-            <p>{{clue.current.riddle}}</p>
+            <p>{{clue.current.riddle}}
+            Bearing: {{bearing}}<br/>
+            Final Bearing: {{finalBearing}}<br/>
+            Curren Position: {{currentPosition.longitude}}, {{currentPosition.latitude}}<br/>
+            Destination Position: {{destinationPosition.longitude}}, {{destinationPosition.latitude}}<br/>
+            Distance: {{distance}}<br/>
+            </p>
           </div>
           <div class="item item-text-wrap" href="#" ng-if="clue.current.position">
             <i class="icon ion-navigate" style="font-size: 200%; color: blue;"> </i> 300m away

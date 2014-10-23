@@ -50,12 +50,10 @@ app.controller('PlayController', function($scope, treasureHuntRepository, $cordo
   var init = function(){
     intervalId = setInterval(getCurrentPosition, 2000);
 
-
-
     $scope.treasureHunt = treasureHunt;
     $scope.clue = clue;
     $scope.distanceClass = 's-distance';
-
+    try {
     var options = { frequency: 1000 }; // Update every 1 second
 
    var watch = $cordovaDeviceOrientation.watchHeading(options);
@@ -65,14 +63,25 @@ app.controller('PlayController', function($scope, treasureHuntRepository, $cordo
        // An error occurred
        alert(err);
      }, function(position) {
-       // Heading comes back in
-       // position.magneticHeading
-       //alert(position.magneticHeading);
        if($scope.clue.current) {
-         $scope.clue.current.direction = position.magneticHeading;
+         if(currentPosition && currentPosition.coords && $scope.clue.current.position){
+         var current = new LatLon(currentPosition.coords.latitude, currentPosition.coords.longitude);
+         $scope.currentPosition = currentPosition.coords;
+         var cluePosition = $scope.clue.current.position;
+         $scope.destinationPosition = $scope.clue.current.position;
+         var clue = new LatLon(cluePosition.latitude, cluePosition.longitude);
+         var bearing = Math.round(current.bearingTo(clue));
+         $scope.bearing = bearing;
+         var diff = bearing - Math.round(position.magneticHeading);
+         $scope.distance = $scope.clue.current.distanceTo.toFixed(2);
+         $scope.finalBearing= diff;
+         $scope.clue.current.direction = diff;
          $scope.$apply();
        }
+       }
      });
+   }
+   catch(e) { }
 
   }
 
