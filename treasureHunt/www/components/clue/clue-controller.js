@@ -20,20 +20,16 @@ app.controller('ClueController', function($scope, $state, $stateParams, $ionicLo
     navigator.geolocation.getCurrentPosition(function(pos) {
               $ionicLoading.hide();
               clue.position = pos.coords;
-              console.log(clue);
               $scope.locationText = 'Delete current Location';
           }, function(error) {
               $ionicLoading.hide();
-              console.log('Unable to get position: ' + error);
-          });
+          }, { enableHighAccuracy: true } );
   }
 
   var takePicture = function(){
     navigator.camera.getPicture( function(data){
-      console.log(data);
       clue.image = data;
     }, function(){
-      console.log('could not take picture. continuing....');
     }, { quality: 50, destinationType: Camera.DestinationType.DATA_URL
     });
   }

@@ -5,6 +5,7 @@
   <a class="button button-clear button-positive" ng-click="nextClue()">Next</a>
 </div>
     <ion-content class="has-header">
+
         <div class="list" style="text-align: center;">
           <div class="item" ng-if="clue.current.image">
             {{clue.current.image}}
@@ -13,10 +14,14 @@
             <h3>Riddle</h3>
             <p>{{clue.current.riddle}}</p>
           </div>
-          <div class="item" href="#" ng-if="clue.current.position">
+          <div class="item item-text-wrap" href="#" ng-if="clue.current.position">
             <i class="icon ion-navigate" style="font-size: 200%; color: blue;"> </i> 300m away
-            <p>{{clue.current.distanceTo | distance}}{{message}}</p>
-
+            <p ngif="clue.current.distanceTo">{{clue.current.distanceTo | distance}}</p>
+        <div class='button-container'>
+          <span class='pulse-button' ng-class="distanceClass">
+            <i id="pulse-button-text" class="icon ion-arrow-up-c" style="transform: rotate({{clue.current.direction}}deg);"> </i>
+            </span>
+        </div>
           </div>
         </div>
         <a class="button button-full button-positive" href="#/finish">Finish</a>

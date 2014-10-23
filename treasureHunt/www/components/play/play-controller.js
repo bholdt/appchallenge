@@ -1,42 +1,59 @@
-app.controller('PlayController', function($scope, treasureHuntRepository, distanceService){
+app.controller('PlayController', function($scope, treasureHuntRepository, distanceService, playDistanceColourService){
   var treasureHunt = treasureHuntRepository.getTreasureHunt();
-  $scope.treasureHunt = treasureHunt;
   var currentClueIndex = 0;
   var clue = {}
-  $scope.clue = clue;
   clue.current = treasureHunt.clues[currentClueIndex];
   var currentPosition = {};
+  var intervalId;
 
-  function onSuccess(position) {
-    currentPosition = position;
-    $scope.clue.current.distanceTo = distanceService.calculateDistance(currentPosition.coords,$scope.clue.current.position);
+  function onNewPosition(position) {
+    if(position.coords && $scope.clue.current.position){
+      currentPosition = position;
+      updateClue();
+    }
+    $scope.$apply();
   }
-
-  function onError(error) {
-    $scope.message = 'code: '    + error.code    + '\n' + 'message: ' + error.message + '\n';
-  }
-
-  var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { frequency: 1000 });
 
   $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-    navigator.geolocation.clearWatch(watchID);
+    clearInterval(intervalId);
   });
 
   $scope.nextClue = function(){
     if(currentClueIndex < treasureHunt.clues.length - 1){
       currentClueIndex++;
     }
-    $scope.clue.current = treasureHunt.clues[currentClueIndex];
-    $scope.clue.current.distanceTo = distanceService.calculateDistance(currentPosition.coords,$scope.clue.current.position);
+    updateClue();
   }
 
   $scope.previousClue = function(){
     if(currentClueIndex > 0){
       currentClueIndex--;
     }
-    $scope.clue.current = treasureHunt.clues[currentClueIndex];
-    $scope.clue.current.distanceTo = distanceService.calculateDistance(currentPosition,$scope.clue.current.position);
+    updateClue();
   }
 
+  function updateClue(){
+    $scope.clue.current = treasureHunt.clues[currentClueIndex];
+    $scope.clue.current.distanceTo = 0;
+    $scope.clue.current.direction = ($scope.clue.current.direction || 0) - 40;
+    if(currentPosition.coords){
+      $scope.clue.current.distanceTo = distanceService.calculateDistance(currentPosition.coords,$scope.clue.current.position);
+    }
+    $scope.distanceClass = playDistanceColourService.getColour($scope.clue.current.distanceTo);
+  }
+
+  var getCurrentPosition = function(){
+    var options = { timeout: 1000, enableHighAccuracy: true };
+    navigator.geolocation.getCurrentPosition(onNewPosition, function(){}, options);
+  }
+
+  var init = function(){
+    intervalId = setInterval(getCurrentPosition, 2000);
+    $scope.treasureHunt = treasureHunt;
+    $scope.clue = clue;
+    $scope.distanceClass = 's-distance';
+  }
+
+  init();
 
 });

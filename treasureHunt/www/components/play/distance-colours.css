@@ -1,0 +1,99 @@
+.no-distance{
+  background: grey;
+  box-shadow: 0px 0px 0px 0px grey;
+}
+
+.xs-distance{
+  background: #00CC00;
+  box-shadow: 0px 0px 0px 0px #00CC00;
+}
+
+.s-distance {
+  background: #99CC66;
+  box-shadow: 0px 0px 0px 0px #99CC66;
+}
+
+.m-distance{
+  background: #CCCC66;
+  box-shadow: 0px 0px 0px 0px #CCCC66;
+}
+
+.l-distance{
+  background: #FFCC00;
+  box-shadow: 0px 0px 0px 0px #FFCC00;
+}
+
+.xl-distance{
+  background: #FF3300;
+  box-shadow: 0px 0px 0px 0px #FF3300;
+}
+
+
+.button-container {
+  width: 200px;
+  height: 100%;
+  margin: 0 auto 0;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  background: #fff;
+}
+
+#pulse-button-text{
+  position: absolute;
+  font-size: 200%;
+  top: 0%;
+  left: 38%;
+  color: white;
+  transition: transform 1s ease;
+}
+
+.pulse-button {
+  transition: background-color 1s ease;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  display: block;
+  width: 100px;
+  height: 100px;
+  font-size: 1.3em;
+  font-weight: light;
+  font-family: 'Trebuchet MS', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 100px;
+  letter-spacing: -1px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-animation: pulse 1.5s infinite;
+}
+
+.pulse-button:hover {
+  -webkit-animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  70% {
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+  }
+  100% {
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    box-shadow: 0px 0px 0px 0px rgba(90, 153, 212, 0);
+  }
+}
