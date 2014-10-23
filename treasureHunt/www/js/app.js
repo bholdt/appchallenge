@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-var app = angular.module('starter', ['ionic']);
+var app = angular.module('starter', ['ionic', 'ngCordova']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
