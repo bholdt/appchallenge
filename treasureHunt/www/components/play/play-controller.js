@@ -43,12 +43,12 @@ app.controller('PlayController', function($scope, treasureHuntRepository, $cordo
   }
 
   var getCurrentPosition = function(){
-    var options = { timeout: 1000, enableHighAccuracy: true };
+    var options = { timeout: 4000, enableHighAccuracy: true };
     navigator.geolocation.getCurrentPosition(onNewPosition, function(){}, options);
   }
 
   var init = function(){
-    intervalId = setInterval(getCurrentPosition, 2000);
+    intervalId = setInterval(getCurrentPosition, 5000);
 
     $scope.treasureHunt = treasureHunt;
     $scope.clue = clue;
@@ -76,6 +76,7 @@ app.controller('PlayController', function($scope, treasureHuntRepository, $cordo
          $scope.distance = $scope.clue.current.distanceTo.toFixed(2);
          $scope.finalBearing= diff;
          $scope.clue.current.direction = diff;
+         $scope.image= $scope.clue.current.image;
          $scope.$apply();
        }
        }
