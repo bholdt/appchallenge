@@ -1,20 +1,22 @@
 <ion-view title="Treasure Hunt">
-<div class="bar bar-header">
-  <a class="button button-clear button-positive" href="#/">Cancel</a>
-  <h1 class="title">Create Treasure Hunt</h1>
-  <a class="button button-clear button-positive" href="#/details">Done</a>
-</div>
-    <ion-content class="has-header">
-<div class="list card">
-  <div class="item item-divider">
-    Clues <a class="button button-clear button-small button-positive icon-right" href='#/clue'><i class="icon ion-plus"></i> Add</a>
+  <div class="bar bar-header">
+    <a class="button button-clear button-positive" href="#/">Cancel</a>
+    <h1 class="title">Create Treasure Hunt</h1>
+    <button class="button button-clear button-positive" ng-click="save()">Save</button>
   </div>
-  <a ng-repeat="clue in treasureHunt.clues" class="item item-avatar item-icon-right" href="#/clue/{{$index}}">
-    <img src="{{clue.image}}">
-    <h2>Clue {{$index + 1}}</h2>
-    <p>{{clue.riddle}}</p>
-    <i class="icon ion-chevron-right"> </i>
-  </a>
-</div>
-    </ion-content>
+  <ion-content class="has-header">
+    <ion-list show-delete="true" show-reorder="false">
+      <div class="item item-divider">
+        Clues <a class="button button-clear button-small button-positive icon-right" href='#/clue'><i class="icon ion-plus"></i> Add</a>
+      </div>
+      <ion-item ng-repeat="clue in treasureHunt.clues" class="item-thumbnail-left">
+        <img src="{{clue.image}}"/>
+        <h2>Clue {{$index + 1}}</h2>
+        <p>{{clue.riddle}}</p>
+        <ion-delete-button class="ion-minus-circled"
+                       ng-click="deleteClue($index)">
+    </ion-delete-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>
