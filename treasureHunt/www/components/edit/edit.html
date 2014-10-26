@@ -6,8 +6,8 @@
   </div>
   <ion-content class="has-header">
     <ion-list show-delete="true" show-reorder="false">
-      <div class="item item-divider">
-        Clues <a class="button button-clear button-small button-positive icon-right" href='#/clue'><i class="icon ion-plus"></i> Add</a>
+      <div class="item item-divider item-thumbnail-right">
+        <span>Clues</span>
       </div>
       <ion-item ng-repeat="clue in treasureHunt.clues" class="item-thumbnail-left">
         <img src="{{clue.image}}"/>
@@ -17,6 +17,11 @@
                        ng-click="deleteClue($index)">
     </ion-delete-button>
       </ion-item>
+      <ion-item ng-click="$state.go('edit')" class="item-thumbnail-left">
+        <h2>Add a New Clue</h2>
+        <p>Add a new clue to the treasure hunt</p>
+        <ion-delete-button class="ion-plus-circled" style="color: green;" ng-click="addClue()"> </ion-delete-button>
+      </item>
     </ion-list>
   </ion-content>
 </ion-view>

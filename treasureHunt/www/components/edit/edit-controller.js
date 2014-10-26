@@ -6,8 +6,12 @@ app.controller('EditController', function($scope, $state, treasureHuntRepository
       treasureHunt.clues.splice(index, 1);
     }
 
+    $scope.addClue = function(){
+      $state.go('create-clue');
+    }
+
     $scope.save = function(){
       treasureHuntRepository.saveTreasureHunt(treasureHunt);
-      $state.go('#/details');
+      $state.go('details');
     }
 });
