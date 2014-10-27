@@ -36,5 +36,7 @@ app.controller('DetailsController', function($scope, $state, treasureHuntReposit
       $state.go('play');
     }
 
+    $scope.show
+
     init();
 });

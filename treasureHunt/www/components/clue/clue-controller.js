@@ -1,28 +1,13 @@
-app.controller('ClueController', function($scope, $state, $stateParams, $cordovaCamera, $ionicLoading, treasureHuntRepository, treasureHuntContext){
+app.controller('ClueController', function($scope, $state, $stateParams, $cordovaCamera, $ionicLoading, $ionicModal, treasureHuntRepository, treasureHuntContext){
   var clue = {};
 
   var init = function(){
-    $scope.locationText = 'Mark current location';
 
     if($stateParams.id){
       clue = treasureHuntContext.get().clues[$stateParams.id];
     }
 
     $scope.clue = clue;
-  }
-
-  var markCurrentLocation = function(){
-    $scope.loading = $ionicLoading.show({
-              content: 'Getting current location...',
-              showBackdrop: false
-          });
-    navigator.geolocation.getCurrentPosition(function(pos) {
-              $ionicLoading.hide();
-              clue.position = pos.coords;
-              $scope.locationText = 'Delete current Location';
-          }, function(error) {
-              $ionicLoading.hide();
-          }, { enableHighAccuracy: true } );
   }
 
   var takePicture = function() {
@@ -59,7 +44,26 @@ app.controller('ClueController', function($scope, $state, $stateParams, $cordova
     $state.go('edit');
   }
 
-  $scope.markCurrentLocation = markCurrentLocation;
+  $scope.showModal = function(modal){
+    $ionicModal.fromTemplateUrl(modal + '.html', {
+      scope: $scope,
+      animation: 'slide-in-right'
+    }).then(function(modal) {
+      $scope.currentModal = modal;
+      $scope.currentModal.show();
+    });
+  }
+
+  $scope.cancel = function(){
+    $scope.currentModal.hide();
+    $scope.currentModal.remove();
+  }
+
+  $scope.saveRiddle = function(){
+    $scope.currentModal.hide();
+    $scope.currentModal.remove();
+  }
+
   $scope.save = save;
   $scope.takePicture = takePicture;
   init();

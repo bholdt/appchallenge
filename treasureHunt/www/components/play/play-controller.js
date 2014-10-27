@@ -1,4 +1,4 @@
-app.controller('PlayController', function($scope, $timeout, $ionicModal, treasureHuntContext){
+app.controller('PlayController', function($scope, $timeout, $state, $ionicModal, treasureHuntContext){
 
   var treasureHunt = treasureHuntContext.get();
   var clue = {};
@@ -15,6 +15,12 @@ app.controller('PlayController', function($scope, $timeout, $ionicModal, treasur
     }).then(function(modal) {
       $scope.helpModal = modal;
     });
+  }
+
+  $scope.abandon = function(){
+    var answer = confirm('Are you sure you want to abandon this treasurehunt?');
+    console.log(answer);
+    $state.go('details');
   }
 
   $scope.showHelp = function() {
@@ -38,15 +44,6 @@ app.controller('PlayController', function($scope, $timeout, $ionicModal, treasur
   function updateClue(){
     clue = treasureHunt.clues[currentClueIndex];
     $scope.clue = clue;
-  }
-
-  var getCurrentPosition = function(){
-    var options = { timeout: 4000, enableHighAccuracy: true };
-    navigator.geolocation.getCurrentPosition(onNewPosition, function(error){ alert('Something went wrong: ' + error.message); }, options);
-  }
-
-  function onNewPosition(position){
-    console.log(position);
   }
 
   $scope.nextClue = function(){
