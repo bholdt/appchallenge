@@ -1,7 +1,11 @@
 app.controller('DetailsController', function($scope, $state, treasureHuntRepository){
-    var treasureHunt = treasureHuntRepository.getTreasureHunt();
-    $scope.treasureHunt = treasureHunt;
-    $scope.isEditable = false;
+    var treasureHunt;
+
+    function init(){
+        treasureHunt = treasureHuntRepository.getCurrentTreasureHunt();
+        $scope.treasureHunt = treasureHunt;
+        $scope.isEditable = false;
+    }
 
     $scope.deleteClue = function(index){
       treasureHunt.clues.splice(index, 1);
@@ -31,4 +35,6 @@ app.controller('DetailsController', function($scope, $state, treasureHuntReposit
     $scope.play = function() {
       $state.go('play');
     }
+
+    init();
 });

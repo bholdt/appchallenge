@@ -1,5 +1,5 @@
 app.controller('EditController', function($scope, $state, treasureHuntRepository){
-    var treasureHunt = treasureHuntRepository.getTreasureHunt();
+    var treasureHunt = treasureHuntRepository.getCurrentTreasureHunt();
     $scope.treasureHunt = treasureHunt;
 
     $scope.deleteClue = function(index){

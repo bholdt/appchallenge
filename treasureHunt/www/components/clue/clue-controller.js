@@ -5,7 +5,7 @@ app.controller('ClueController', function($scope, $state, $stateParams, $cordova
     $scope.locationText = 'Mark current location';
 
     if($stateParams.id){
-      clue = treasureHuntRepository.getTreasureHunt().clues[$stateParams.id];
+      clue = treasureHuntRepository.getCurrentTreasureHunt().clues[$stateParams.id];
       $scope.clue = clue;
     }
 
@@ -47,7 +47,7 @@ app.controller('ClueController', function($scope, $state, $stateParams, $cordova
   }
 
   var save = function(){
-    var treasureHunt = treasureHuntRepository.getTreasureHunt();
+    var treasureHunt = treasureHuntRepository.getCurrentTreasureHunt();
     if($stateParams.id){
       treasureHunt.clues[$stateParams.id] = clue;
     }

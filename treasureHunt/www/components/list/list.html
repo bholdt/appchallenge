@@ -1,22 +1,17 @@
 <ion-view>
   <div class="bar bar-header">
-      <h1 class="title">Treasure Hunts</h1>
-      <a class="button button-clear button-positive" href="#/details">Add</a>
-    </div>
-    <ion-content class="has-header">
-<div class="list card">
-  <a class="item item-avatar item-icon-right" href="#/clue">
-    <img src="mcfly.jpg">
-    <h2>Treasure Hunt ABC</h2>
-    <p>12 December 2014</p>
-    <i class="icon ion-chevron-right"> </i>
-  </a>
-  <a class="item item-avatar item-icon-right" href="#/clue">
-    <img src="mcfly.jpg">
-    <h2>Tom's Birthday Hunt</h2>
-    <p>30 October 2010</p>
-    <i class="icon ion-chevron-right"> </i>
-  </a>
-</div>
-    </ion-content>
+    <button class="button button-clear button-positive">Edit</button>
+    <h1 class="title">Treasure Hunts</h1>
+    <a class="button button-clear button-positive" ui-sref="details"><i class="icon ion-plus"> </i></a>
+  </div>
+  <ion-content class="has-header">
+    <ion-list show-delete="isEditable" show-reorder="false">
+      <ion-item ng-repeat="treasureHunt in treasureHunts" class="item-thumbnail-left" ng-click="edit(treasureHunt.id)">
+        <img src="img.treasurehunt"/>
+        <h2>TreasureHunt {{treasureHunt.id}}</h2>
+        <p>Some text about treasurehunt</p>
+        <ion-delete-button class="ion-minus-circled" ng-click="delete(treasureHunt.id)"> </ion-delete-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

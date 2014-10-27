@@ -1,14 +1,14 @@
 <ion-view title="Treasure Hunt">
   <div class="bar bar-header">
-    <a class="button button-clear button-positive" ng-click="cancel()">Cancel</a>
-    <h1 class="title">Create Treasure Hunt</h1>
+    <a class="button button-clear button-positive" ng-if="isEditable" ng-click="cancel()">Cancel</a>
+    <a class="button button-clear button-positive" ng-if="!isEditable" ui-sref="list">Back</a>
+    <h1 class="title">Treasure Hunt</h1>
     <button class="button button-clear button-positive" ng-if="isEditable" ng-click="save()">Save</button>
     <button class="button button-clear button-positive" ng-if="!isEditable" ng-click="edit()">Edit</button>
   </div>
   <ion-content class="has-header">
     <h3 ng-if="!isEditable">{{clue.title}}</h3>
     <h3 ng-if="isEditable"></h3>
-    <button class="button button-full button-positive" ng-click="play()">Play</button>
     <ion-list show-delete="isEditable" show-reorder="false">
       <div class="item item-divider item-thumbnail-right">
         <span>Clues</span>
@@ -25,5 +25,6 @@
         <ion-delete-button class="ion-plus-circled" style="color: green;" ng-click="addClue()"> </ion-delete-button>
       </item>
     </ion-list>
+    <button class="button button-full button-positive" ng-click="play()" ng-if="!isEditable">Play</button>
   </ion-content>
 </ion-view>

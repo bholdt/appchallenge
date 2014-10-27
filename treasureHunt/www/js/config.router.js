@@ -7,7 +7,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('list', {
       url: '/',
-      templateUrl: 'components/list/list.html'
+      templateUrl: 'components/list/list.html',
+      controller: 'ListController'
     })
     .state('details', {
       url: '/details',
