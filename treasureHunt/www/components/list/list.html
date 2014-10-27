@@ -1,8 +1,9 @@
 <ion-view>
   <div class="bar bar-header">
-    <button class="button button-clear button-positive">Edit</button>
+    <button class="button button-clear button-positive" ng-if="isEditable" ng-click="cancelEdit()">Back</button>
+    <button class="button button-clear button-positive" ng-if="!isEditable" ng-click="editList()">Edit</button>
     <h1 class="title">Treasure Hunts</h1>
-    <a class="button button-clear button-positive" ui-sref="details"><i class="icon ion-plus"> </i></a>
+    <button class="button button-clear button-positive" ng-click="create()" ng-if="!isEditable"><i class="icon ion-plus"> </i></button>
   </div>
   <ion-content class="has-header">
     <ion-list show-delete="isEditable" show-reorder="false">

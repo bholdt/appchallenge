@@ -1,10 +1,11 @@
-app.controller('DetailsController', function($scope, $state, treasureHuntRepository){
+app.controller('DetailsController', function($scope, $state, treasureHuntRepository, treasureHuntContext){
     var treasureHunt;
 
     function init(){
-        treasureHunt = treasureHuntRepository.getCurrentTreasureHunt();
+        treasureHunt = treasureHuntContext.get();
         $scope.treasureHunt = treasureHunt;
-        $scope.isEditable = false;
+        console.log($state.current.name);
+        $scope.isEditable = ($state.current.name === 'edit');
     }
 
     $scope.deleteClue = function(index){

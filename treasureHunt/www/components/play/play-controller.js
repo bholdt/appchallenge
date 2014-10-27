@@ -1,5 +1,5 @@
-app.controller('PlayController', function($scope, treasureHuntRepository, $cordovaDeviceOrientation, distanceService, playDistanceColourService){
-  var treasureHunt = treasureHuntRepository.getTreasureHunt();
+app.controller('PlayController', function($scope, treasureHuntContext, $cordovaDeviceOrientation, distanceService, playDistanceColourService){
+  var treasureHunt = treasureHuntContext.get();
   var currentClueIndex = 0;
   var clue = {}
   clue.current = treasureHunt.clues[currentClueIndex];

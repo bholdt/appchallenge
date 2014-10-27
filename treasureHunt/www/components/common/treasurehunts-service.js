@@ -1,37 +1,30 @@
-app.factory('treasureHuntRepository',function(){
-    var treasurehunts = JSON.parse(localStorage['treasurehunts'] || '[]');
-    var currentTreasureHunt = {};
-    currentTreasureHunt.clues = [];
+app.factory('treasureHuntRepository',function(guidGenerator){
+    var treasurehunts = JSON.parse(localStorage['treasurehunts'] || '{}');
+
+    function save(){
+        localStorage['treasurehunts'] = JSON.stringify(treasurehunts);
+      }
 
     return {
       getTreasureHunts: function(){
         return treasurehunts;
       },
       getTreasureHunt: function(id){
-        if(treasurehunts[id])
-          currentTreasureHunt = treasurehunts[id];
         return treasurehunts[id];
       },
-      getCurrentTreasureHunt: function(){
-        console.log('accessing current treasure');
-        console.log(currentTreasureHunt);
-        return currentTreasureHunt;
+      deleteTreasureHunt: function(id){
+        delete treasurehunts[id];
+        save();
       },
       saveTreasureHunt: function(treasure){
-        console.log('save');
-        if(!treasure.id){
-          treasure.id = treasurehunts.length;
-          treasurehunts.push(treasure);
-          console.log(treasure);
-        }
-        console.log(treasurehunts);
-        localStorage['treasurehunts'] = JSON.stringify(treasurehunts);
+        if(!treasurehunts[treasure.id])
+          treasurehunts[treasure.id] = treasure;
+        save();
       },
-      createTreasurehunt: function(){
+      createTreasureHunt: function(){
         var treasurehunt = {};
         treasurehunt.clues = [];
-        currentTreasureHunt = treasurehunt;
-        currentTreasureHunt.clues = [];
+        treasurehunt.id = guidGenerator.create();
         return treasurehunt;
       }
     }

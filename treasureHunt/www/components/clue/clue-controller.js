@@ -1,12 +1,11 @@
-app.controller('ClueController', function($scope, $state, $stateParams, $cordovaCamera, $ionicLoading, treasureHuntRepository){
+app.controller('ClueController', function($scope, $state, $stateParams, $cordovaCamera, $ionicLoading, treasureHuntRepository, treasureHuntContext){
   var clue = {};
 
-  var initialize = function(){
+  var init = function(){
     $scope.locationText = 'Mark current location';
 
     if($stateParams.id){
-      clue = treasureHuntRepository.getCurrentTreasureHunt().clues[$stateParams.id];
-      $scope.clue = clue;
+      clue = treasureHuntContext.get().clues[$stateParams.id];
     }
 
     $scope.clue = clue;
@@ -47,11 +46,13 @@ app.controller('ClueController', function($scope, $state, $stateParams, $cordova
   }
 
   var save = function(){
-    var treasureHunt = treasureHuntRepository.getCurrentTreasureHunt();
+    var treasureHunt = treasureHuntContext.get();
     if($stateParams.id){
       treasureHunt.clues[$stateParams.id] = clue;
     }
     else{
+      if(!treasureHunt.clues)
+        treasureHunt.clues = [];
       treasureHunt.clues.push(clue);
     }
     treasureHuntRepository.saveTreasureHunt(treasureHunt);
@@ -61,5 +62,5 @@ app.controller('ClueController', function($scope, $state, $stateParams, $cordova
   $scope.markCurrentLocation = markCurrentLocation;
   $scope.save = save;
   $scope.takePicture = takePicture;
-  initialize();
+  init();
 });
