@@ -4,7 +4,6 @@ app.controller('DetailsController', function($scope, $state, treasureHuntReposit
     function init(){
         treasureHunt = treasureHuntContext.get();
         $scope.treasureHunt = treasureHunt;
-        console.log($state.current.name);
         $scope.isEditable = ($state.current.name === 'edit');
     }
 
