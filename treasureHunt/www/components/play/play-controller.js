@@ -1,4 +1,4 @@
-app.controller('PlayController', function($scope, $timeout, $state, $ionicModal, treasureHuntContext){
+app.controller('PlayController', function($scope, $timeout, $state, $ionicModal, treasureHuntContext, symbolService){
 
   var treasureHunt = treasureHuntContext.get();
   var clue = {};
@@ -8,6 +8,7 @@ app.controller('PlayController', function($scope, $timeout, $state, $ionicModal,
     currentClueIndex = 0;
     clue = treasureHunt.clues[currentClueIndex];
     $scope.clue = clue;
+    $scope.symbols = symbolService.getAllSymbols();
 
     $ionicModal.fromTemplateUrl('help.html', {
       scope: $scope,
@@ -17,29 +18,38 @@ app.controller('PlayController', function($scope, $timeout, $state, $ionicModal,
     });
   }
 
+  $scope.chooseSymbol = function(symbol){
+    if($scope.clue.symbol === symbol){
+      if(currentClueIndex == treasureHunt.clues.length - 1){
+        $scope.helpModal.hide();
+        $state.go('finish');
+      } else {
+        alert('Well done you got it. Next one!');
+        $scope.helpModal.hide();
+        $scope.nextClue();
+      }
+    } else {
+      alert('Sorry wrong choice!');
+      $scope.helpModal.hide();
+    }
+  }
+
   $scope.abandon = function(){
     var answer = confirm('Are you sure you want to abandon this treasurehunt?');
-    console.log(answer);
-    $state.go('details');
+    if(answer)
+      $state.go('details');
   }
 
   $scope.showHelp = function() {
     var helps = {};
     $scope.helps = helps;
     $scope.isHelp = true;
-    $scope.helps.distanceTo = 300;
-    $scope.helps.bearingTo = 20;
     $scope.helpModal.show();
   };
 
   $scope.cancelHelp = function() {
     $scope.helpModal.hide();
   };
-
-  //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
 
   function updateClue(){
     clue = treasureHunt.clues[currentClueIndex];

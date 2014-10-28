@@ -1,4 +1,4 @@
-app.controller('ClueController', function($scope, $state, $stateParams, $cordovaCamera, $ionicLoading, $ionicModal, treasureHuntRepository, treasureHuntContext){
+app.controller('ClueController', function($scope, $state, $stateParams, symbolService, $cordovaCamera, $ionicLoading, $ionicModal, treasureHuntRepository, treasureHuntContext){
   var clue = {};
 
   var init = function(){
@@ -8,6 +8,7 @@ app.controller('ClueController', function($scope, $state, $stateParams, $cordova
     }
 
     $scope.clue = clue;
+    $scope.symbols = symbolService.getAllSymbols();
   }
 
   var takePicture = function() {
@@ -62,6 +63,13 @@ app.controller('ClueController', function($scope, $state, $stateParams, $cordova
   $scope.saveRiddle = function(){
     $scope.currentModal.hide();
     $scope.currentModal.remove();
+  }
+
+  $scope.chooseSymbol = function(symbol){
+    clue.symbol = symbol;
+    $scope.currentModal.hide();
+    $scope.currentModal.remove();
+    alert('Write this symbol on a piece of paper, so that the treasure hunters can identify it when they find this clue');
   }
 
   $scope.save = save;

@@ -20,17 +20,13 @@
 <script id="help.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar>
+      <button class="button button-clear button-positive" ng-click="cancelHelp()">Cancel</button>
       <h1 class="title">Symbol</h1>
     </ion-header-bar>
     <ion-content>
-      <button ng-click="chooseSymbol()" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-heart" style="font-size: 40px;"> </i> </button>
-      <button ng-click="chooseSymbol()" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-star" style="font-size: 40px;"> </i> </button>
-      <button ng-click="chooseSymbol()" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-cloud" style="font-size: 40px;"> </i> </button>
-      <button ng-click="chooseSymbol()" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-pizza" style="font-size: 40px;"> </i> </button>
-      <button ng-click="chooseSymbol()" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-happy" style="font-size: 40px;"> </i> </button>
-      <button ng-click="chooseSymbol()" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-jet" style="font-size: 40px;"> </i> </button>
-      <button ng-click="chooseSymbol()" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-record" style="font-size: 40px;"> </i> </button>
-      <button ng-click="chooseSymbol()" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-play" style="font-size: 40px;"> </i> </button>
+    <div ng-repeat="symbol in symbols" style="float: left; padding: 5px;">
+      <button ng-click="chooseSymbol(symbol)" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-{{symbol}}" style="font-size: 40px;"> </i> </button>
+    </div>
     </ion-content>
   </ion-modal-view>
 </script>

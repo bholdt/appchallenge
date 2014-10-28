@@ -5,7 +5,7 @@
   </div>
     <ion-content class="has-header">
         <div class="list">
-          <div class="item item-icon-left item-icon-right" ng-click="showModal('photo')">
+          <div class="item item-icon-left item-icon-right" ng-click="takePicture()">
             <i class="icon ion-qr-scanner"> </i>
             <span>Add a Photo</span>
             <i class="icon ion-checkmark-circled" ng-if="clue.image" style="color: green; font-size: 100%;"> </i>
@@ -33,15 +33,10 @@
       <button class="button button-clear button-positive">Save</button>
     </ion-header-bar>
     <ion-content>
-<p>Choose a symbol to identify this clue</p>
-<button class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-heart" style="font-size: 40px;"> </i> </button>
-<button class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-star" style="font-size: 40px;"> </i> </button>
-<button class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-cloud" style="font-size: 40px;"> </i> </button>
-<button class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-pizza" style="font-size: 40px;"> </i> </button>
-<button class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-happy" style="font-size: 40px;"> </i> </button>
-<button class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-jet" style="font-size: 40px;"> </i> </button>
-<button class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-record" style="font-size: 40px;"> </i> </button>
-<button class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-play" style="font-size: 40px;"> </i> </button>
+    <p>Choose a symbol to identify this clue</p>
+    <div ng-repeat="symbol in symbols" style="float: left; padding: 5px;">
+      <button ng-click="chooseSymbol(symbol)" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-{{symbol}}" style="font-size: 40px;"> </i> </button>
+    </div>
     </ion-content>
   </ion-modal-view>
 </script>
