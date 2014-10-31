@@ -1,7 +1,7 @@
 <ion-view title="Treasure Hunt">
   <div class="bar bar-header">
     <a class="button button-clear button-positive" ng-if="isEditable" ng-click="cancel()">Cancel</a>
-    <a class="button button-clear button-positive" ng-if="!isEditable" ui-sref="list">Back</a>
+    <a class="button button-clear button-positive" ng-if="!isEditable" ng-click="back()">Back</a>
     <h1 class="title">Treasure Hunt</h1>
     <button class="button button-clear button-positive" ng-if="isEditable" ng-click="save()">Save</button>
     <button class="button button-clear button-positive" ng-if="isEditable" ng-click="edit()">Edit</button>
@@ -17,8 +17,8 @@
       <div class="item item-divider item-thumbnail-right">
         <span>Clues</span>
       </div>
-      <ion-item ng-repeat="clue in treasureHunt.clues" class="item-card item-thumbnail-left" ng-click="editClue($index)">
-        <img src="{{clue.image}}"/>
+      <ion-item ng-repeat="clue in treasureHunt.clues" class="item-card item-icon-left" ng-click="editClue($index)">
+        <i class="icon ion-{{clue.symbol}}"> </i>
         <h2>Clue {{$index + 1}}</h2>
         <p>{{clue.riddle}}</p>
         <ion-delete-button class="ion-minus-circled" ng-click="deleteClue($index)"> </ion-delete-button>
@@ -28,3 +28,16 @@
     </div>
   </ion-content>
 </ion-view>
+
+<script id="treasureTitle.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Treasure Hunt Title</h1>
+      <button class="button button-clear button-positive" ng-click="saveTitle()">Save</button>
+    </ion-header-bar>
+    <ion-content scroll="false">
+      <span>Name of treasurehunt</span>
+      <input ng-model="treasureHunt.name" type="text" class="input" placeholder="Name of Treasure Hunt" />
+    </ion-content>
+  </ion-modal-view>
+</script>

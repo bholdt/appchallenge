@@ -1,4 +1,4 @@
-app.controller('DetailsController', function($scope, $state, treasureHuntRepository, treasureHuntContext){
+app.controller('DetailsController', function($scope, $state, $ionicModal, treasureHuntRepository, treasureHuntContext){
     var treasureHunt;
 
     function init(){
@@ -22,6 +22,36 @@ app.controller('DetailsController', function($scope, $state, treasureHuntReposit
 
     $scope.edit = function(){
       $scope.isEditable = true;
+    }
+
+    $scope.showModal = function(modal){
+      $ionicModal.fromTemplateUrl(modal + '.html', {
+        scope: $scope,
+        animation: 'slide-in-right'
+      }).then(function(modal) {
+        $scope.currentModal = modal;
+        $scope.currentModal.show();
+      });
+    }
+
+    $scope.back = function(){
+      if(!treasureHunt.name){
+          $scope.showModal('treasureTitle');
+      } else{
+        $state.go('list');
+      }
+    }
+
+    $scope.saveTitle = function(){
+      if(treasureHunt.name){
+        $scope.currentModal.hide();
+        $scope.currentModal.remove();
+        treasureHuntRepository.saveTreasureHunt(treasureHunt);
+
+        $state.go('list');
+      } else{
+        alert('Please enter a title');
+      }
     }
 
     $scope.editClue = function(index){

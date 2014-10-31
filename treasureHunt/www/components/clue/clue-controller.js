@@ -9,6 +9,8 @@ app.controller('ClueController', function($scope, $state, $stateParams, symbolSe
 
     $scope.clue = clue;
     $scope.symbols = symbolService.getAllSymbols();
+    $scope.riddle = {};
+    $scope.riddle.text = clue.riddle;
   }
 
   var takePicture = function() {
@@ -32,6 +34,10 @@ app.controller('ClueController', function($scope, $state, $stateParams, symbolSe
   }
 
   var save = function(){
+    if(!clue.symbol){
+      alert('In order to save this clue, you need to set a symbol.');
+      return;
+    }
     var treasureHunt = treasureHuntContext.get();
     if($stateParams.id){
       treasureHunt.clues[$stateParams.id] = clue;
@@ -55,12 +61,17 @@ app.controller('ClueController', function($scope, $state, $stateParams, symbolSe
     });
   }
 
-  $scope.cancel = function(){
+  $scope.cancelModal = function(){
     $scope.currentModal.hide();
     $scope.currentModal.remove();
   }
 
+  $scope.cancel = function(){
+    $state.go('edit');
+  }
+
   $scope.saveRiddle = function(){
+    clue.riddle = $scope.riddle.text;
     $scope.currentModal.hide();
     $scope.currentModal.remove();
   }
