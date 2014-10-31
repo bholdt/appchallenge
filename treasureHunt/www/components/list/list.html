@@ -9,7 +9,7 @@
     <ion-list show-delete="isEditable" show-reorder="false">
       <ion-item ng-repeat="treasureHunt in treasureHunts" class="item-thumbnail-left" ng-click="edit(treasureHunt.id)">
         <img src="img/treasure.png" />
-        <h2>TreasureHunt {{treasureHunt.name}}</h2>
+        <h2>{{treasureHunt.name}}</h2>
         <p>Clues: {{treasureHunt.clues.length}}</p>
         <ion-delete-button class="ion-minus-circled" ng-click="delete(treasureHunt.id)"> </ion-delete-button>
       </ion-item>
