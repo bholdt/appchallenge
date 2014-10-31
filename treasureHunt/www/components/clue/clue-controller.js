@@ -20,8 +20,8 @@ app.controller('ClueController', function($scope, $state, $stateParams, symbolSe
         sourceType : Camera.PictureSourceType.CAMERA,
         allowEdit : true,
         encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 100,
-        targetHeight: 100,
+        targetWidth: 330,
+        targetHeight: 400,
         popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: false
     };

@@ -1,14 +1,13 @@
-<ion-view title="Treasure Hunt">
+<ion-view>
   <div class="bar bar-header">
     <a class="button button-clear button-positive" ng-if="isEditable" ng-click="cancel()">Cancel</a>
     <a class="button button-clear button-positive" ng-if="!isEditable" ng-click="back()">Back</a>
-    <h1 class="title">Treasure Hunt</h1>
+    <h1 class="title" ng-if="treasureHunt.name">{{treasureHunt.name}}</h1>
+    <h1 class="title" ng-if="!treasureHunt.name">New Treasure Hunt</h1>
     <button class="button button-clear button-positive" ng-if="isEditable" ng-click="save()">Save</button>
     <button class="button button-clear button-positive" ng-if="isEditable" ng-click="edit()">Edit</button>
   </div>
   <ion-content class="has-header">
-    <h3 ng-if="!isEditable">{{clue.title}}</h3>
-    <h3 ng-if="isEditable"></h3>
     <div id="button-group" class="button-bar" style="text-align: center;">
       <button class="button button-positive button-clear" ng-click="addClue()"><i class="icon ion-plus-circled"> </i> Create Clue</button>
       <button class="button button-clear button-positive" ng-click="play()" ng-if="!isEditable"><i class="icon ion-play"> </i> Play</button>

@@ -61,10 +61,11 @@
   <ion-modal-view>
     <ion-header-bar>
       <button class="button button-clear button-positive" ng-click="cancelModal()">Cancel</button>
-      <h1 class="title">Riddle</h1>
+      <h1 class="title">Enter Riddle</h1>
       <button class="button button-clear button-positive" ng-click="saveRiddle()">Save</button>
     </ion-header-bar>
     <ion-content scroll="false">
+      <span>Enter your riddle</span>
       <textarea ng-model="riddle.text" class="input" placeholder="Riddle Text" style="width: 90%; height: 400px;"></textarea>
     </ion-content>
   </ion-modal-view>
