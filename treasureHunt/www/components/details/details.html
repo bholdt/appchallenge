@@ -1,26 +1,26 @@
 <ion-view>
   <div class="bar bar-header">
-    <a class="button button-clear button-positive" ng-if="isEditable" ng-click="cancel()">Cancel</a>
-    <a class="button button-clear button-positive" ng-if="!isEditable" ng-click="back()">Back</a>
+    <a class="button button-clear button-positive" ng-if="isEditable" on-tap="cancel()">Cancel</a>
+    <a class="button button-clear button-positive" ng-if="!isEditable" on-tap="back()">Back</a>
     <h1 class="title" ng-if="treasureHunt.name">{{treasureHunt.name}}</h1>
     <h1 class="title" ng-if="!treasureHunt.name">New Treasure Hunt</h1>
-    <button class="button button-clear button-positive" ng-if="isEditable" ng-click="save()">Save</button>
-    <button class="button button-clear button-positive" ng-if="isEditable" ng-click="edit()">Edit</button>
+    <button class="button button-clear button-positive" ng-if="isEditable" on-tap="save()">Save</button>
+    <button class="button button-clear button-positive" ng-if="isEditable" on-tap="edit()">Edit</button>
   </div>
   <ion-content class="has-header">
     <div id="button-group" class="button-bar" style="text-align: center;">
-      <button class="button button-positive button-clear" ng-click="addClue()"><i class="icon ion-plus-circled"> </i> Create Clue</button>
-      <button class="button button-clear button-positive" ng-click="play()" ng-if="!isEditable"><i class="icon ion-play"> </i> Play</button>
+      <button class="button button-positive button-clear" on-tap="addClue()"><i class="icon ion-plus-circled"> </i> Create Clue</button>
+      <button class="button button-clear button-positive" on-tap="play()" ng-if="!isEditable"><i class="icon ion-play"> </i> Play</button>
     </div>
     <ion-list show-delete="isEditable" show-reorder="false">
       <div class="item item-divider item-thumbnail-right">
         <span>Clues</span>
       </div>
-      <ion-item ng-repeat="clue in treasureHunt.clues" class="item-card item-icon-left" ng-click="editClue($index)">
+      <ion-item ng-repeat="clue in treasureHunt.clues" class="item-card item-icon-left" on-tap="editClue($index)">
         <i class="icon ion-{{clue.symbol}}"> </i>
         <h2>Clue {{$index + 1}}</h2>
         <p>{{clue.riddle}}</p>
-        <ion-delete-button class="ion-minus-circled" ng-click="deleteClue($index)"> </ion-delete-button>
+        <ion-delete-button class="ion-minus-circled" on-tap="deleteClue($index)"> </ion-delete-button>
       </ion-item>
     </ion-list>
     <div style="text-align: center;">
@@ -32,7 +32,7 @@
   <ion-modal-view>
     <ion-header-bar>
       <h1 class="title">Treasure Hunt Title</h1>
-      <button class="button button-clear button-positive" ng-click="saveTitle()">Save</button>
+      <button class="button button-clear button-positive" on-tap="saveTitle()">Save</button>
     </ion-header-bar>
     <ion-content scroll="false">
       <span>Name of treasurehunt</span>

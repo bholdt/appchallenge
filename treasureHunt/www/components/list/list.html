@@ -1,17 +1,17 @@
 <ion-view>
   <div class="bar bar-header">
-    <button class="button button-clear button-positive" ng-if="isEditable" ng-click="cancelEdit()">Back</button>
-    <button class="button button-clear button-positive" ng-if="!isEditable" ng-click="editList()">Edit</button>
+    <button class="button button-clear button-positive" ng-if="isEditable" on-tap="cancelEdit()">Back</button>
+    <button class="button button-clear button-positive" ng-if="!isEditable" on-tap="editList()">Edit</button>
     <h1 class="title">Treasure Hunts</h1>
-    <button class="button button-clear button-positive" ng-click="create()" ng-if="!isEditable"><i class="icon ion-plus"> </i></button>
+    <button class="button button-clear button-positive" on-tap="create()" ng-if="!isEditable"><i class="icon ion-plus"> </i></button>
   </div>
   <ion-content class="has-header">
     <ion-list show-delete="isEditable" show-reorder="false">
-      <ion-item ng-repeat="treasureHunt in treasureHunts" class="item-thumbnail-left" ng-click="edit(treasureHunt.id)">
+      <ion-item ng-repeat="treasureHunt in treasureHunts" class="item-thumbnail-left" on-tap="edit(treasureHunt.id)">
         <img src="img/treasure.png" />
         <h2>{{treasureHunt.name}}</h2>
         <p>Clues: {{treasureHunt.clues.length}}</p>
-        <ion-delete-button class="ion-minus-circled" ng-click="delete(treasureHunt.id)"> </ion-delete-button>
+        <ion-delete-button class="ion-minus-circled" on-tap="delete(treasureHunt.id)"> </ion-delete-button>
       </ion-item>
     </ion-list>
   </ion-content>

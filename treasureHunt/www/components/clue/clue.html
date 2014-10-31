@@ -1,24 +1,24 @@
 <ion-view title="Treasure Hunt">
   <div class="bar bar-header">
-    <button class="button button-clear button-positive" ng-click="cancel()">Cancel</button>
+    <button class="button button-clear button-positive" on-tap="cancel()">Cancel</button>
     <h1 class="title">Clue</h1>
-    <button class="button button-clear button-positive" ng-click="save()">Save</button>
+    <button class="button button-clear button-positive" on-tap="save()">Save</button>
   </div>
     <ion-content class="has-header">
         <div class="list">
-          <div class="item item-icon-left item-icon-right" ng-click="takePicture()">
+          <div class="item item-icon-left item-icon-right" on-tap="takePicture()">
             <i class="icon ion-checkmark-circled" ng-if="clue.image" style="color: green; font-size: 100%;"> </i>
             <span ng-if="!clue.image">Add a Photo</span>
             <span ng-if="clue.image">Change Photo</span>
             <i class="icon ion-chevron-right"> </i>
           </div>
-          <div class="item item-icon-left item-icon-right" ng-click="showModal('riddle')">
+          <div class="item item-icon-left item-icon-right" on-tap="showModal('riddle')">
             <i class="icon ion-checkmark-circled" ng-if="clue.riddle" style="color: green; font-size: 100%;"> </i>
             <span ng-if="!clue.riddle">Add a Riddle</span>
             <span ng-if="clue.riddle">Change Riddle</span>
             <i class="icon ion-chevron-right"> </i>
           </div>
-          <div class="item item-icon-left item-icon-right" ng-click="showModal('symbol')">
+          <div class="item item-icon-left item-icon-right" on-tap="showModal('symbol')">
             <i class="icon ion-checkmark-circled" ng-if="clue.symbol" style="color: green; font-size: 100%;"> </i>
             <span ng-if="!clue.symbol">Add Identifying Symbol *</span>
             <span ng-if="clue.symbol">Change Identifying Symbol *</span>
@@ -31,14 +31,14 @@
 <script id="symbol.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar>
-      <button class="button button-clear button-positive" ng-click="cancelModal()">Cancel</button>
+      <button class="button button-clear button-positive" on-tap="cancelModal()">Cancel</button>
       <h1 class="title">Symbol</h1>
       <button class="button button-clear button-positive">Save</button>
     </ion-header-bar>
     <ion-content>
     <p>Choose a symbol to identify this clue</p>
     <div ng-repeat="symbol in symbols" style="float: left; padding: 5px;">
-      <button ng-click="chooseSymbol(symbol)" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-{{symbol}}" style="font-size: 40px;"> </i> </button>
+      <button on-tap="chooseSymbol(symbol)" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-{{symbol}}" style="font-size: 40px;"> </i> </button>
     </div>
     </ion-content>
   </ion-modal-view>
@@ -47,7 +47,7 @@
 <script id="photo.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar>
-      <button class="button button-clear button-positive" ng-click="cancelModal()">Cancel</button>
+      <button class="button button-clear button-positive" on-tap="cancelModal()">Cancel</button>
       <h1 class="title">Photo</h1>
       <button class="button button-clear button-positive">Save</button>
     </ion-header-bar>
@@ -60,9 +60,9 @@
 <script id="riddle.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar>
-      <button class="button button-clear button-positive" ng-click="cancelModal()">Cancel</button>
+      <button class="button button-clear button-positive" on-tap="cancelModal()">Cancel</button>
       <h1 class="title">Enter Riddle</h1>
-      <button class="button button-clear button-positive" ng-click="saveRiddle()">Save</button>
+      <button class="button button-clear button-positive" on-tap="saveRiddle()">Save</button>
     </ion-header-bar>
     <ion-content scroll="false">
       <span>Enter your riddle</span>
