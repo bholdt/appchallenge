@@ -30,7 +30,7 @@ gulp.task('sass', function(done) {
 gulp.task('index', function(){
    return gulp.src('./www/index.html')
       .pipe(inject(gulp.src('./www/components/**/*.js', {read: false}), {relative: true}))
-      .pipe(inject(gulp.src('./www/components/**/*.css', {read: false}). {relative: true}))
+      .pipe(inject(gulp.src('./www/components/**/*.css', {read: false}), {relative: true}))
       .pipe(gulp.dest('./www'));
 })
 

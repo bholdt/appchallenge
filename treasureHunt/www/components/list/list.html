@@ -5,7 +5,7 @@
     <h1 class="title">Treasure Hunts</h1>
     <button class="button button-clear button-positive" on-tap="create()" ng-if="!isEditable"><i class="icon ion-plus"> </i></button>
   </div>
-  <ion-content class="has-header">
+  <ion-content class="has-header background-content">
     <ion-list show-delete="isEditable" show-reorder="false">
       <ion-item ng-repeat="treasureHunt in treasureHunts" class="item-thumbnail-left" on-tap="edit(treasureHunt.id)">
         <img src="img/treasure.png" />
