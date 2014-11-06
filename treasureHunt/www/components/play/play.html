@@ -1,28 +1,13 @@
 <ion-view title="Treasure Hunt">
-  <div class="bar bar-header">
-    <button class="button button-clear button-positive" on-tap="abandon()">Abandon</button>
-    <h1 class="title">Treasure Hunt</h1>
-  </div>
-  <ion-content class="has-header play-background">
-    <div id="playMode">
-    <div class="list" style="text-align: center;">
-      <div class="item" ng-if="clue.image">
-        <img src="{{clue.image}}" />
+  <ion-content>
+    <div id="playMode" class="play-background" style="height: 600px; text-align: center;">
+      <div id="img" style="transform: rotate(2deg); -webkit-transform: rotate(2deg);">
+         <img src="{{clue.image}}" style="border: 4px black solid; width: 250px; padding: 20px; margin-top: 40px; opacity: 0.9; " />
+         <i class="icon ion-play" style="font-size: 4em; position: absolute; top: 47%; left: 45%; opacity: 0.5;"> </i>
       </div>
-      <div class="item item-text-wrap" ng-if="clue.riddle">
-        {{clue.riddle}}
-      </div>
-      <div class="polaroid">
-         <div class="pic" style="background: rgba(40, 38, 42, 0.5) url('{{clue.image}}');"></div>
-         <div class="text-container">
-            <p class="text">Clue</p>
-         </div>
-</div>
-    </div>
-<div style="background: white; width: 100%; height: 90px; padding: 10px;">
-  <h2 class="text-animate">testing this now</h2>
-</div>
-    <button class="button button-full button-inform" on-tap="showHelp()">Found It</button>
+      <button class="" on-tap="showHelp()" style="color: black; padding: 10px; margin: 10px; vertical-align: middle; transform: rotate(-1deg); -webkit-transform: rotate(-1deg); border: 2px black solid; background-color: white; font-size: 2em;"><img src="img/treasure.png" width=70 style="float: left;" /><span style="float: left; vertical-align: middle;">Found It</span></button>
+      <hr/>
+    <button class="button button-clear button-positive" ng-click="abandon()">Abandon</button>
   </div>
 </ion-view>
 
@@ -38,4 +23,18 @@
     </div>
     </ion-content>
   </ion-modal-view>
+</script>
+
+<script id="foundClue.html" type="text/ng-template">
+<ion-modal-view>
+  <ion-header-bar>
+    <button class="button button-clear button-positive" on-tap="cancelHelp()">Cancel</button>
+    <h1 class="title">Symbol</h1>
+  </ion-header-bar>
+  <ion-content>
+  <div ng-repeat="symbol in symbols" style="float: left; padding: 5px;">
+    <button on-tap="chooseSymbol(symbol)" class="button button-positive" style="width: 100px; height: 100px;"><i class="icon ion-{{symbol}}" style="font-size: 40px;"> </i> </button>
+  </div>
+  </ion-content>
+</ion-modal-view>
 </script>
