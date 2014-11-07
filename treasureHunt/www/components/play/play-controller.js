@@ -2,13 +2,41 @@ app.controller('PlayController', function($scope, $timeout, $state, $ionicModal,
 
   var treasureHunt = treasureHuntContext.get();
   var clue = {};
-  var currentClueIndex;
+  var state = {};
+  state.clueIndex = 0;
+  state.clueCount = 0;
+  var music;
+  var media;
+
+  var playRiddle = function(){
+     if(typeof Media != "undefined" && clue.riddleSound){
+        media = new Media(clue.riddleSound, function(){
+           media.release();
+           $scope.riddleSoundState = 'play';
+           $scope.$apply();
+           music.setVolume(1);
+           music.play({numberOfLoops: 10});
+        },
+        function(message) {
+        });
+        $scope.riddleSoundState = 'pause';
+        music.pause();
+        media.play();
+     }
+
+  }
 
   function init(){
-    currentClueIndex = 0;
-    clue = treasureHunt.clues[currentClueIndex];
+    clue = treasureHunt.clues[0];
     $scope.clue = clue;
     $scope.symbols = symbolService.getAllSymbols();
+    state.clueIndex = 0;
+    state.clueCount = treasureHunt.clues.length;
+    $scope.state = state;
+    if(typeof Media != 'undefined') {
+      music = new Media('protected/preview.mp3');
+      music.play({numberOfLoops: 10});
+    }
 
     $ionicModal.fromTemplateUrl('help.html', {
       scope: $scope,
@@ -16,16 +44,24 @@ app.controller('PlayController', function($scope, $timeout, $state, $ionicModal,
     }).then(function(modal) {
       $scope.helpModal = modal;
     });
+
+    $ionicModal.fromTemplateUrl('foundClue.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+   }).then(function(modal){
+      $scope.foundClue = modal;
+   });
   }
 
   $scope.chooseSymbol = function(symbol){
     if($scope.clue.symbol === symbol){
-      if(currentClueIndex == treasureHunt.clues.length - 1){
+      if(state.clueIndex == treasureHunt.clues.length - 1){
         $scope.helpModal.hide();
+        stopMusic();
         $state.go('finish');
       } else {
-        alert('Well done you got it. Next one!');
         $scope.helpModal.hide();
+        $scope.foundClue.show();
         $scope.nextClue();
       }
     } else {
@@ -36,8 +72,14 @@ app.controller('PlayController', function($scope, $timeout, $state, $ionicModal,
 
   $scope.abandon = function(){
     var answer = confirm('Are you sure you want to abandon this treasurehunt?');
-    if(answer)
+    if(answer){
       $state.go('details');
+      stopMusic();
+    }
+  }
+
+  $scope.continue = function(){
+     $scope.foundClue.hide();
   }
 
   $scope.showHelp = function() {
@@ -52,23 +94,26 @@ app.controller('PlayController', function($scope, $timeout, $state, $ionicModal,
   };
 
   function updateClue(){
-    clue = treasureHunt.clues[currentClueIndex];
+    clue = treasureHunt.clues[state.clueIndex];
     $scope.clue = clue;
   }
 
   $scope.nextClue = function(){
-    if(currentClueIndex < treasureHunt.clues.length - 1){
-      currentClueIndex++;
+    if(state.clueIndex < treasureHunt.clues.length - 1){
+      state.clueIndex++;
     }
     updateClue();
   }
 
-  $scope.previousClue = function(){
-    if(currentClueIndex > 0){
-      currentClueIndex--;
-    }
-    updateClue();
+  function stopMusic(){
+    if(music){
+      music.stop();
+      music.release();
+   }
   }
+
+  $scope.playRiddle = playRiddle;
+  $scope.riddleSoundState = 'play';
 
   init();
 

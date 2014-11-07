@@ -33,6 +33,22 @@ app.controller('ClueController', function($scope, $state, $stateParams, symbolSe
     });
   }
 
+  var recordSound = function(){
+     alert('calling record sound');
+     // capture callback
+     var captureSuccess = function(mediaFiles) {
+        clue.riddleSound = mediaFiles[0].fullPath;
+     };
+
+     // capture error callback
+     var captureError = function(error) {
+        alert('Error code: ' + error.code + 'Capture Error');
+     };
+
+     // start audio capture
+     navigator.device.capture.captureAudio(captureSuccess, captureError);
+  }
+
   var save = function(){
     if(!clue.symbol){
       alert('In order to save this clue, you need to set a symbol.');
@@ -83,6 +99,7 @@ app.controller('ClueController', function($scope, $state, $stateParams, symbolSe
     alert('Write this symbol on a piece of paper, so that the treasure hunters can identify it when they find this clue');
   }
 
+  $scope.recordSound = recordSound;
   $scope.save = save;
   $scope.takePicture = takePicture;
   init();
